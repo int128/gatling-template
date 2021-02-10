@@ -1,0 +1,23 @@
+name: test
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/cache@v2
+      with:
+        path: |
+          ~/.ivy2/cache
+          ~/.sbt
+        key: sbt-v1-${{ hashFiles('build.sbt') }}
+    - uses: actions/setup-java@v1
+      with:
+        java-version: 11
+    - run: sbt 'gatling:testOnly computerdatabase.BasicSimulation'
