@@ -1,2 +1,7 @@
-*.class
-*.log
+# sbt
+.idea/
+.bsp/
+target/
+
+# gatling
+results/
