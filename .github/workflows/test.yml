@@ -11,6 +11,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
+    - uses: actions/cache@v2.1.4
+      with:
+        path: |
+          ~/.ivy2/cache
+          ~/.sbt
+        key: sbt-v1-${{ hashFiles('build.sbt') }}
     - uses: actions/setup-java@v1
       with:
         java-version: 11
