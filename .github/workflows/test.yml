@@ -21,3 +21,15 @@ jobs:
       with:
         java-version: 11
     - run: sbt 'gatling:testOnly computerdatabase.BasicSimulation'
+    - run: |
+        git clone "https://git:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.wiki.git" /tmp/wiki
+        mkdir -p "/tmp/wiki/$GITHUB_REF"
+        cp -a ./target/gatling/* "/tmp/wiki/$GITHUB_REF"
+        cd /tmp/wiki
+        git add .
+        git config user.email ci@example.com
+        git config user.name ci
+        git commit -m ci
+        git push origin master
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
