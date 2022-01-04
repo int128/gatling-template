@@ -33,7 +33,7 @@ jobs:
       matrix:
         id: [1]
     env:
-      SIMULATION_NAME: computerdatabase.BasicSimulation
+      SIMULATION_NAME: example.ExampleSimulation
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-java@v2
