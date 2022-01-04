@@ -2,7 +2,6 @@ name: loadtest
 
 on:
   pull_request:
-    branches: [ main ]
 
 jobs:
   build:
@@ -15,9 +14,10 @@ jobs:
             ~/.ivy2/cache
             ~/.sbt
           key: sbt-v1-${{ hashFiles('build.sbt') }}
-      - uses: actions/setup-java@v1
+      - uses: actions/setup-java@v2
         with:
           java-version: 11
+          distribution: temurin
       - run: sbt universal:packageBin
       - uses: actions/upload-artifact@v2
         with:
@@ -31,14 +31,15 @@ jobs:
       - build
     strategy:
       matrix:
-        id: [1, 2, 3]
+        id: [1]
     env:
       SIMULATION_NAME: computerdatabase.BasicSimulation
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-java@v1
+      - uses: actions/setup-java@v2
         with:
           java-version: 11
+          distribution: temurin
       - uses: actions/download-artifact@v2
       - run: unzip gatling-build/gatling-latest.zip
       - run: gatling-latest/bin/gatling.sh --no-reports -s "$SIMULATION_NAME"
@@ -54,9 +55,10 @@ jobs:
       - run
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-java@v1
+      - uses: actions/setup-java@v2
         with:
           java-version: 11
+          distribution: temurin
       - uses: actions/download-artifact@v2
       # copy logs to gatling-latest/results/gatling-results-...-simulation.log
       - run: |
