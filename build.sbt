@@ -6,7 +6,7 @@ name := "gatling"
 organization := "io.github.int128"
 version := "latest"
 
-val gatlingVersion = "3.7.6"
+val gatlingVersion = "3.8.0"
 libraryDependencies += "io.gatling.highcharts" % "gatling-charts-highcharts" % gatlingVersion
 libraryDependencies += "io.gatling" % "gatling-test-framework" % gatlingVersion
 
