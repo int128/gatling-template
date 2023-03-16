@@ -19,7 +19,7 @@ jobs:
           java-version: 11
           distribution: temurin
       - run: sbt universal:packageBin
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v3
         with:
           name: gatling-build
           path: target/universal/gatling-latest.zip
@@ -43,7 +43,7 @@ jobs:
       - uses: actions/download-artifact@v2
       - run: unzip gatling-build/gatling-latest.zip
       - run: gatling-latest/bin/gatling.sh --no-reports -s "$SIMULATION_NAME"
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v3
         with:
           name: gatling-results-${{ matrix.id }}
           path: gatling-latest/results/
@@ -68,7 +68,7 @@ jobs:
           done
       - run: unzip gatling-build/gatling-latest.zip
       - run: gatling-latest/bin/gatling.sh --reports-only .
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v3
         with:
           name: gatling-report
           path: gatling-latest/results/
