@@ -40,7 +40,7 @@ jobs:
         with:
           java-version: 11
           distribution: temurin
-      - uses: actions/download-artifact@v2
+      - uses: actions/download-artifact@v3
       - run: unzip gatling-build/gatling-latest.zip
       - run: gatling-latest/bin/gatling.sh --no-reports -s "$SIMULATION_NAME"
       - uses: actions/upload-artifact@v2
@@ -59,7 +59,7 @@ jobs:
         with:
           java-version: 11
           distribution: temurin
-      - uses: actions/download-artifact@v2
+      - uses: actions/download-artifact@v3
       # copy logs to gatling-latest/results/gatling-results-...-simulation.log
       - run: |
           mkdir -p gatling-latest/results
