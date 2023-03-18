@@ -1,14 +1,6 @@
 {
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
-    "config:base",
-  ],
-  "labels": [
-    "renovate/{{depName}}",
-  ],
-  "packageRules": [
-    {
-      "matchUpdateTypes": ["minor", "patch", "pin"],
-      "automerge": true
-    }
+    "github>int128/renovate-base",
   ],
 }
