@@ -29,6 +29,10 @@ jobs:
           distribution: temurin
       - uses: actions/download-artifact@v3
       - run: unzip gatling-build/gatling-latest.zip
+      - uses: int128/comment-action@v1
+        with:
+          post: |
+            :warning: Starting Gatling for simulation `${{ inputs.simulation-classname }}`
       - run: gatling-latest/bin/gatling.sh --no-reports -s '${{ inputs.simulation-classname }}'
       - uses: actions/upload-artifact@v3
         with:
