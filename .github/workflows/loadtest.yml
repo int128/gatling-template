@@ -8,16 +8,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/cache@v3
-        with:
-          path: |
-            ~/.ivy2/cache
-            ~/.sbt
-          key: sbt-v1-${{ hashFiles('build.sbt') }}
       - uses: actions/setup-java@v3
         with:
           java-version: 11
           distribution: temurin
+          cache: sbt
       - run: sbt universal:packageBin
       - uses: actions/upload-artifact@v3
         with:
