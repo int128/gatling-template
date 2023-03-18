@@ -1,0 +1,10 @@
+name: loadtest-example
+
+on:
+  workflow_dispatch:
+
+jobs:
+  run:
+    uses: ./.github/workflows/loadtest.yaml
+    with:
+      simulation-classname: example.ExampleSimulation

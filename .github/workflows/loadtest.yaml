@@ -1,34 +1,26 @@
 name: loadtest
 
 on:
-  pull_request:
+  workflow_call:
+    inputs:
+      simulation-classname:
+        required: true
+        type: string
+        description: Classname of simulation to run
 
 jobs:
   build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-java@v3
-        with:
-          java-version: 11
-          distribution: temurin
-          cache: sbt
-      - run: sbt universal:packageBin
-      - uses: actions/upload-artifact@v3
-        with:
-          name: gatling-build
-          path: target/universal/gatling-latest.zip
-          retention-days: 1
+    uses: ./.github/workflows/build.yaml
 
   run:
+    if: github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     needs:
       - build
     strategy:
       matrix:
         id: [1]
-    env:
-      SIMULATION_NAME: example.ExampleSimulation
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-java@v3
@@ -37,7 +29,7 @@ jobs:
           distribution: temurin
       - uses: actions/download-artifact@v3
       - run: unzip gatling-build/gatling-latest.zip
-      - run: gatling-latest/bin/gatling.sh --no-reports -s "$SIMULATION_NAME"
+      - run: gatling-latest/bin/gatling.sh --no-reports -s '${{ inputs.simulation-classname }}'
       - uses: actions/upload-artifact@v3
         with:
           name: gatling-results-${{ matrix.id }}
@@ -46,6 +38,7 @@ jobs:
 
   report:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     needs:
       - run
     steps:
@@ -55,10 +48,10 @@ jobs:
           java-version: 11
           distribution: temurin
       - uses: actions/download-artifact@v3
-      # copy logs to gatling-latest/results/gatling-results-...-simulation.log
-      - run: |
+      - name: Copy logs to gatling-latest/results/gatling-results-*-simulation.log
+        run: |
           mkdir -p gatling-latest/results
-          find gatling-results-* -name simulation.log | while read f; do
+          find gatling-results-* -name simulation.log | while read -r f; do
             cp -v "$f" "gatling-latest/results/${f//\//-}"
           done
       - run: unzip gatling-build/gatling-latest.zip
@@ -67,3 +60,7 @@ jobs:
         with:
           name: gatling-report
           path: gatling-latest/results/
+      - uses: int128/comment-action@v1
+        with:
+          post: |
+            :notebook: Gatling report is available in ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
