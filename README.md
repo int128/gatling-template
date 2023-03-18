@@ -1,17 +1,13 @@
-# hello-gatling
+# gatling-template [![build](https://github.com/int128/hello-gatling/actions/workflows/build.yaml/badge.svg)](https://github.com/int128/hello-gatling/actions/workflows/build.yaml)
 
-This is an example with Gatling and sbt.
+This is a template project to run Gatling on GitHub Actions.
 
 
 ## Getting Started
 
-### Run on pull request trigger
+### Run on GitHub Actions
 
-[![loadtest](https://github.com/int128/hello-gatling/actions/workflows/loadtest.yml/badge.svg)](https://github.com/int128/hello-gatling/actions/workflows/loadtest.yml)
-
-This repository contains a workflow of pull request trigger.
-You can run Gatling in parallel by creating a pull request.
-See [`.github/workflows/loadtest.yml`](.github/workflows/loadtest.yml) for details.
+See [`.github/workflows/loadtest-example.yaml`](.github/workflows/loadtest-example.yaml).
 
 :memo: **NOTE**: for stability, you should run Gatling jobs on self-hosted runners in your environment.
 
