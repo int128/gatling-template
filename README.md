@@ -7,6 +7,14 @@ This is a template project to run Gatling on GitHub Actions.
 
 ### Run on GitHub Actions
 
+Run a simulation by workflow dispatch:
+
+<img width="377" alt="image" src="https://user-images.githubusercontent.com/321266/226104473-72dcbd57-c9c8-48cb-ac11-3290e348bef3.png">
+
+You will receive comments:
+
+<img width="920" alt="image" src="https://user-images.githubusercontent.com/321266/226104428-dbcc9b94-966d-46f3-ba71-9c9ffc540582.png">
+
 See [`.github/workflows/loadtest-example.yaml`](.github/workflows/loadtest-example.yaml).
 
 :memo: **NOTE**: for stability, you should run Gatling jobs on self-hosted runners in your environment.
