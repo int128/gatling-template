@@ -1,19 +1,16 @@
 # gatling-template [![build](https://github.com/int128/hello-gatling/actions/workflows/build.yaml/badge.svg)](https://github.com/int128/hello-gatling/actions/workflows/build.yaml)
 
-This is a template project to run Gatling on GitHub Actions.
+This is a template project to run Gatling simulation in GitHub Actions.
 
 
 ## Getting Started
 
-### Run on GitHub Actions
+### Run in GitHub Actions
 
-Run a simulation by workflow dispatch:
+To run a simulation, create a pull request with prefix.
+You will soon receive the comments:
 
-<img width="377" alt="image" src="https://user-images.githubusercontent.com/321266/226104473-72dcbd57-c9c8-48cb-ac11-3290e348bef3.png">
-
-You will receive comments:
-
-<img width="920" alt="image" src="https://user-images.githubusercontent.com/321266/226104428-dbcc9b94-966d-46f3-ba71-9c9ffc540582.png">
+<img width="920" alt="image" src="https://user-images.githubusercontent.com/321266/226153972-f9219fc5-84c0-449e-b198-b3352a387df7.png">
 
 See [`.github/workflows/loadtest-example.yaml`](.github/workflows/loadtest-example.yaml).
 
