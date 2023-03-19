@@ -7,14 +7,17 @@ on:
         required: true
         type: string
         description: Classname of simulation to run
+      runs-on:
+        required: true
+        type: string
+        description: Gatling runner
 
 jobs:
   build:
     uses: ./.github/workflows/build.yaml
 
   run:
-    if: github.event_name == 'workflow_dispatch'
-    runs-on: ubuntu-latest
+    runs-on: ${{ inputs.runs-on }}
     timeout-minutes: 10
     needs:
       - build

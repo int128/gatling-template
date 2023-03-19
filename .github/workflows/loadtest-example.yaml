@@ -1,10 +1,12 @@
 name: loadtest-example
 
 on:
-  workflow_dispatch:
+  pull_request:
 
 jobs:
   run:
+    if: startsWith(github.head_ref, 'example/')
     uses: ./.github/workflows/loadtest.yaml
     with:
       simulation-classname: example.ExampleSimulation
+      runs-on: ubuntu-latest
