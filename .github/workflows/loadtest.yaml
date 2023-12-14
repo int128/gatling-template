@@ -37,7 +37,7 @@ jobs:
           post: |
             :warning: Starting Gatling for simulation `${{ inputs.simulation-classname }}`
       - run: gatling-latest/bin/gatling.sh --no-reports -s '${{ inputs.simulation-classname }}'
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: gatling-results-${{ matrix.id }}
           path: gatling-latest/results/
@@ -63,7 +63,7 @@ jobs:
           done
       - run: unzip gatling-build/gatling-latest.zip
       - run: gatling-latest/bin/gatling.sh --reports-only .
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: gatling-report
           path: gatling-latest/results/
