@@ -29,7 +29,7 @@ jobs:
           distribution: temurin
           cache: sbt
       - run: sbt universal:packageBin
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: gatling-build
           path: target/universal/gatling-latest.zip
