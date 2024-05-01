@@ -1,7 +1,7 @@
 enablePlugins(JavaAppPackaging)
 enablePlugins(GatlingPlugin)
 
-scalaVersion := "2.13.13"
+scalaVersion := "2.13.14"
 name := "gatling"
 organization := "io.github.int128"
 version := "latest"
