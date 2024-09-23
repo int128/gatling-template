@@ -1,2 +1,2 @@
 addSbtPlugin("com.typesafe.sbt" % "sbt-native-packager" % "1.8.1")
-addSbtPlugin("io.gatling" % "gatling-sbt" % "4.9.2")
+addSbtPlugin("io.gatling" % "gatling-sbt" % "4.10.0")
